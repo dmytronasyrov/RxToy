@@ -10,9 +10,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class BasicsController: UIViewController {
+final class BasicsController: UIViewController {
 
-    // Variables
+    //MARK: - Variables
     
     @IBOutlet var tapRecognizer: UITapGestureRecognizer!
     @IBOutlet weak var inputField: UITextField!
@@ -31,11 +31,11 @@ class BasicsController: UIViewController {
     @IBOutlet weak var multiLabel: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    lazy var disposeBag = DisposeBag()
-    let tapped = PublishSubject<String>()
-    let input = Variable<String?>("")
+    private lazy var disposeBag = DisposeBag()
+    private let tapped = PublishSubject<String>()
+    private let input = Variable<String?>("")
     
-    // Life
+    //MARK: - Life
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +61,13 @@ class BasicsController: UIViewController {
         }
     }
     
-    // Private
+    //MARK: - Public
+    
+    static func create() -> BasicsController {
+        return UIStoryboard(name: "BasicsController", bundle: nil).instantiateInitialViewController() as! BasicsController
+    }
+    
+    //MARK: - Private
     
     private func addTapKeyboardDismiss(_ recognizer: UITapGestureRecognizer, view: UIView, bag: DisposeBag) {
         recognizer.rx.event.asDriver()
