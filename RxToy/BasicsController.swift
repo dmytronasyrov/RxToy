@@ -31,7 +31,7 @@ final class BasicsController: UIViewController {
     @IBOutlet weak var multiLabel: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    private lazy var disposeBag = DisposeBag()
+    private let disposeBag = DisposeBag()
     private let tapped = PublishSubject<String>()
     private let input = Variable<String?>("")
     
